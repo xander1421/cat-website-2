@@ -7,6 +7,7 @@ image: "https://images.unsplash.com/[IMAGE-URL]"
 personality: "playful"
 # remove this line to publish
 draft: true
+eyecolor: "test"
 # author slug: choose from "./src/data/authors.js"
 author: "mario-sanchez"
 tags: [tag1, tag2, tag3]

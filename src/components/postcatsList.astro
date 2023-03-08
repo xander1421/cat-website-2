@@ -1,0 +1,318 @@
+---
+import cx from "classnames";
+import { Image, Picture } from "@astrojs/image/components";
+import Label from "@components/ui/label.astro";
+import type { Personality } from "@data/personality";
+import { personalities } from "@data/personality";
+import { getFormattedDate } from "@utils/all";
+import { Icon } from "astro-icon";
+
+const { post, aspect, preloadImage } = Astro.props;
+const personality = personalities.find(
+  (item) => item.slug === post.data.personality
+) as Personality;
+
+---
+
+<!-- <div class="mb-2 group flex hove:transition ease-in-out delay-150 hover:-translate-y-1 hover:scale-110 hover:duration-300 mt-20 items-center transform-gpu space-x-4 bg-gradient-to-r from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]">
+ 
+  <div>
+    <div class="flex-1 min-w-0">
+      <h2 class="text-lg font-semibold tracking-normal text-brand-primary dark:text-white">
+        <a href={"/catalog/" + post.slug}>
+          <span
+            class="">
+            {post.data.title}
+          </span>
+        </a>
+      </h2>
+    
+  </div>
+    <div class="items-center text-base font-semibold text-gray-900 dark:text-white ">
+      
+      {
+        (
+          <p class=" text-sm text-gray-500 dark:text-gray-400  sm:text-green-200 lg:text-blue-700">
+            <a href={"/catalog/" + post.slug}>{post.data.excerpt.slice(0, 75)}...</a>
+          </p>
+        )
+      }
+
+        <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><g fill="none" stroke="#ffd700" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"><path d="M15 12a3 3 0 1 1-6 0a3 3 0 0 1 6 0Z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7c-1.274 4.057-5.064 7-9.542 7c-4.477 0-8.268-2.943-9.542-7Z"/></g></svg>        </p>
+
+        <p class="items-center">
+          <a href="#">
+            <Label theme={personality.color}>{personality.title}</Label>
+          </a>
+          
+        </p>
+    </div>
+    <!-- make a div  what will be on a new row and it will hold an svg of a cat use tailwindcss-->
+<!-- </div> -->
+<div class="flex justify-start items-end flex-grow-0 flex-shrink-0 relative mt-8 hover:transition ease-in-out delay-150 hover:-translate-y-2 hover:scale-110 hover:duration-300 transform-gpu bg-gradient-to-r from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_10px] group-hover:bg-[length:100%_10px]">
+  <div class="flex-grow-0 flex-shrink-0 w-[427px] h-[433px] relative">
+    <div class="w-[427px] h-[433px] absolute left-0 top-0">
+      <div class="w-[427px] h-[433px] absolute left-0 top-0 overflow-hidden">
+ <div
+class={cx(
+  "flex-shrink-0 relative overflow-hidden transition-all rounded-md  hover:scale-105",
+  aspect === "landscape" ? "aspect-video" : "aspect-square"
+)}>
+    <a href={"/catalog/" + post.slug}>
+      {
+        post.data.image ? (
+          <Picture
+            src={post.data.image}
+            widths={[640, 90, 480]}
+            sizes="(max-width: 640px) 90vw, 480px"
+            aspectRatio={aspect === "landscape" ? "16:9" : "1:1"}
+            alt="Thumbnail"
+            loading={preloadImage ? "eager" : "lazy"}
+            class="mb-6 hover:opacity-90 shadow-lg "
+          />
+        ) : (
+          <span class="text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2 lg:w-28 lg:h-28">
+            <Icon
+              class="text-black"
+              name="heroicons-outline:photograph"
+            />
+          </span>
+
+        )
+      }
+    </a>
+  </div>
+        <p
+          class="w-[78px] h-[38px] absolute left-[34px] top-[364px] text-[28px] font-bold text-left text-white"
+        >
+        <a href={"/catalog/" + post.slug}>
+          <span
+            class="">
+            {post.data.title}
+          </span>
+        </a>
+        </p>
+        <p
+          class="w-[168px] h-[38px] absolute left-[272px] top-[364px] text-[28px] font-bold text-left text-white"
+        >
+          Available
+        </p>
+          <rect x="0.05513" y="0.830078" width="68" height="56" rx="4" fill="#F2F5F7"></rect>
+        </svg>
+      </div>
+    </div>
+  </div>
+  <div
+    class="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 h-[434px] w-[895px] relative gap-2.5 px-[99px] py-[31px] bg-[#f2f5f7]/[0.68]"
+  >
+    <div
+      class="flex justify-start items-start flex-grow-0 flex-shrink-0 absolute left-[99px] top-[68px] gap-[92px]"
+    >
+      <div class="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-[60px]">
+        <div class="flex justify-start items-start flex-grow-0 flex-shrink-0 gap-24">
+          <div
+            class="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[59px]"
+          >
+            <div class="flex justify-start items-start flex-grow-0 flex-shrink-0 relative gap-2">
+              <svg
+                width="41"
+                height="28"
+                viewBox="0 0 41 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="flex-grow-0 flex-shrink-0 w-10 h-7"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M9.02299 26H20.875C21.5575 25.9997 22.2119 25.7284 22.6944 25.2457C23.1769 24.763 23.448 24.1085 23.448 23.426V12.01C25.861 11.914 27.308 9.235 26.018 7.153L25.264 5.937C24.9789 5.4766 24.581 5.09663 24.108 4.83307C23.635 4.56952 23.1025 4.43112 22.561 4.431H20.409V3.48C20.409 3.08765 20.2532 2.71136 19.9759 2.43384C19.6985 2.15631 19.3223 2.00027 18.93 2C18.4483 2.00013 17.9714 2.09514 17.5264 2.27959C17.0814 2.46405 16.6771 2.73434 16.3366 3.07504C15.9961 3.41574 15.726 3.82017 15.5418 4.26524C15.3576 4.71031 15.2629 5.18731 15.263 5.669V10.854C13.346 11.041 11.899 11.949 10.836 13.225C9.66199 14.635 8.97099 16.473 8.55899 18.238C8.14599 20.013 7.99899 21.776 7.95599 23.088C7.94003 23.5585 7.9357 24.0293 7.94299 24.5H6.95499C6.3789 24.4997 5.81544 24.3312 5.33382 24.0151C4.8522 23.699 4.47341 23.2491 4.24398 22.7206C4.01455 22.1922 3.94448 21.6083 4.04237 21.0406C4.14025 20.4728 4.40184 19.9461 4.79499 19.525L6.17499 18.045C7.12638 17.0248 7.64454 15.675 7.62029 14.2802C7.59604 12.8855 7.03127 11.5546 6.04499 10.568L4.69199 9.213C4.62333 9.13931 4.54053 9.08021 4.44853 9.03922C4.35653 8.99823 4.25722 8.97618 4.15652 8.97441C4.05581 8.97263 3.95578 8.99116 3.8624 9.02888C3.76901 9.0666 3.68417 9.12274 3.61296 9.19396C3.54174 9.26518 3.48559 9.35001 3.44787 9.4434C3.41015 9.53679 3.39163 9.63682 3.3934 9.73752C3.39518 9.83822 3.41722 9.93754 3.45821 10.0295C3.4992 10.1215 3.55831 10.2043 3.63199 10.273L4.98699 11.629C5.69858 12.3403 6.10603 13.3002 6.12338 14.3062C6.14073 15.3122 5.76663 16.2856 5.07999 17.021L3.69999 18.501C3.10832 19.1359 2.71478 19.9296 2.56762 20.7849C2.42047 21.6402 2.5261 22.5198 2.87156 23.316C3.21702 24.1121 3.78729 24.7901 4.51245 25.2669C5.23762 25.7436 6.08615 25.9984 6.95399 26H9.02299ZM18.91 3.5V5.182C18.91 5.597 19.245 5.932 19.66 5.932H22.56C23.143 5.932 23.683 6.233 23.99 6.728L24.743 7.945C25.438 9.065 24.633 10.514 23.314 10.514H22.698C22.4991 10.514 22.3083 10.593 22.1677 10.7337C22.027 10.8743 21.948 11.0651 21.948 11.264V23.426C21.948 24.019 21.468 24.5 20.875 24.5H19.801V23.426C19.8013 22.8485 19.6878 22.2766 19.467 21.743C19.2462 21.2093 18.9224 20.7244 18.5142 20.3159C18.106 19.9074 17.6213 19.5833 17.0878 19.3622C16.5543 19.141 15.9825 19.0271 15.405 19.027H13.885C13.6861 19.027 13.4953 19.106 13.3547 19.2467C13.214 19.3873 13.135 19.5781 13.135 19.777C13.135 19.9759 13.214 20.1667 13.3547 20.3073C13.4953 20.448 13.6861 20.527 13.885 20.527H15.405C17.005 20.527 18.302 21.825 18.302 23.426V24.5H9.44199C9.43453 24.0456 9.43853 23.5912 9.45399 23.137C9.49599 21.883 9.63499 20.225 10.019 18.579C10.405 16.924 11.025 15.341 11.988 14.186C12.928 13.057 14.205 12.318 16.013 12.318C16.1115 12.318 16.209 12.2986 16.3 12.2609C16.391 12.2232 16.4737 12.168 16.5433 12.0983C16.613 12.0287 16.6682 11.946 16.7059 11.855C16.7436 11.764 16.763 11.6665 16.763 11.568V5.668C16.763 4.478 17.722 3.511 18.91 3.5Z"
+                  fill="#505D68"
+                ></path>
+                <path
+                  d="M30.7619 25H36.6879C37.0292 24.9999 37.3564 24.8642 37.5976 24.6229C37.8389 24.3815 37.9744 24.0542 37.9744 23.713V18.005C39.1809 17.957 39.9044 16.6175 39.2594 15.5765L38.8824 14.9685C38.7399 14.7383 38.541 14.5483 38.3044 14.4165C38.0679 14.2848 37.8017 14.2156 37.5309 14.2155H36.4549V13.74C36.4549 13.5438 36.377 13.3557 36.2384 13.2169C36.0997 13.0782 35.9116 13.0001 35.7154 13C35.4746 13.0001 35.2361 13.0476 35.0136 13.1398C34.7911 13.232 34.589 13.3672 34.4187 13.5375C34.2485 13.7079 34.1134 13.9101 34.0213 14.1326C33.9292 14.3552 33.8819 14.5937 33.8819 14.8345V17.427C32.9234 17.5205 32.1999 17.9745 31.6684 18.6125C31.0814 19.3175 30.7359 20.2365 30.5299 21.119C30.3234 22.0065 30.2499 22.888 30.2284 23.544C30.2204 23.7792 30.2183 24.0146 30.2219 24.25H29.7279C29.4399 24.2499 29.1581 24.1656 28.9173 24.0075C28.6765 23.8495 28.4871 23.6245 28.3724 23.3603C28.2577 23.0961 28.2227 22.8041 28.2716 22.5203C28.3206 22.2364 28.4513 21.973 28.6479 21.7625L29.3379 21.0225C29.8136 20.5124 30.0727 19.8375 30.0606 19.1401C30.0484 18.4427 29.7661 17.7773 29.2729 17.284L28.5964 16.6065C28.5621 16.5697 28.5207 16.5401 28.4747 16.5196C28.4287 16.4991 28.379 16.4881 28.3287 16.4872C28.2783 16.4863 28.2283 16.4956 28.1816 16.5144C28.1349 16.5333 28.0925 16.5614 28.0569 16.597C28.0213 16.6326 27.9932 16.675 27.9744 16.7217C27.9555 16.7684 27.9462 16.8184 27.9471 16.8688C27.948 16.9191 27.959 16.9688 27.9795 17.0148C28 17.0608 28.0296 17.1022 28.0664 17.1365L28.7439 17.8145C29.0997 18.1702 29.3034 18.6501 29.3121 19.1531C29.3208 19.6561 29.1337 20.1428 28.7904 20.5105L28.1004 21.2505C27.8046 21.5679 27.6078 21.9648 27.5342 22.3925C27.4607 22.8201 27.5135 23.2599 27.6862 23.658C27.8589 24.0561 28.1441 24.3951 28.5067 24.6334C28.8692 24.8718 29.2935 24.9992 29.7274 25H30.7619ZM35.7054 13.75V14.591C35.7054 14.7985 35.8729 14.966 36.0804 14.966H37.5304C37.8219 14.966 38.0919 15.1165 38.2454 15.364L38.6219 15.9725C38.9694 16.5325 38.5669 17.257 37.9074 17.257H37.5994C37.5 17.257 37.4046 17.2965 37.3343 17.3668C37.2639 17.4372 37.2244 17.5325 37.2244 17.632V23.713C37.2244 24.0095 36.9844 24.25 36.6879 24.25H36.1509V23.713C36.1511 23.4242 36.0943 23.1383 35.9839 22.8715C35.8735 22.6047 35.7116 22.3622 35.5075 22.158C35.3034 21.9537 35.0611 21.7917 34.7943 21.6811C34.5276 21.5705 34.2417 21.5136 33.9529 21.5135H33.1929C33.0935 21.5135 32.9981 21.553 32.9278 21.6233C32.8574 21.6937 32.8179 21.789 32.8179 21.8885C32.8179 21.988 32.8574 22.0833 32.9278 22.1537C32.9981 22.224 33.0935 22.2635 33.1929 22.2635H33.9529C34.7529 22.2635 35.4014 22.9125 35.4014 23.713V24.25H30.9714C30.9677 24.0228 30.9697 23.7956 30.9774 23.5685C30.9984 22.9415 31.0679 22.1125 31.2599 21.2895C31.4529 20.462 31.7629 19.6705 32.2444 19.093C32.7144 18.5285 33.3529 18.159 34.2569 18.159C34.3062 18.159 34.3549 18.1493 34.4004 18.1305C34.4459 18.1116 34.4873 18.084 34.5221 18.0492C34.5569 18.0143 34.5845 17.973 34.6034 17.9275C34.6222 17.882 34.6319 17.8332 34.6319 17.784V14.834C34.6319 14.239 35.1114 13.7555 35.7054 13.75Z"
+                  fill="#505D68"
+                ></path>
+              </svg>
+              <p class="flex-grow-0 flex-shrink-0 text-2xl text-left text-[#505d68]">Life stage</p>
+            </div>
+            <p class="flex-grow-0 flex-shrink-0 text-2xl font-bold text-left text-[#505d68]">
+              Adult
+            </p>
+          </div>
+          <div
+            class="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[57px]"
+          >
+            <div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+              <svg
+                width="25"
+                height="25"
+                viewBox="0 0 25 25"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                class="flex-grow-0 flex-shrink-0 w-6 h-6 relative"
+                preserveAspectRatio="none"
+              >
+                <path
+                  d="M19.5 4.5H18.5V2.5H16.5V4.5H8.5V2.5H6.5V4.5H5.5C4.39 4.5 3.51 5.4 3.51 6.5L3.5 20.5C3.5 21.0304 3.71071 21.5391 4.08579 21.9142C4.46086 22.2893 4.96957 22.5 5.5 22.5H19.5C20.6 22.5 21.5 21.6 21.5 20.5V6.5C21.5 5.4 20.6 4.5 19.5 4.5ZM19.5 20.5H5.5V10.5H19.5V20.5ZM19.5 8.5H5.5V6.5H19.5V8.5ZM9.5 14.5H7.5V12.5H9.5V14.5ZM13.5 14.5H11.5V12.5H13.5V14.5ZM17.5 14.5H15.5V12.5H17.5V14.5ZM9.5 18.5H7.5V16.5H9.5V18.5ZM13.5 18.5H11.5V16.5H13.5V18.5ZM17.5 18.5H15.5V16.5H17.5V18.5Z"
+                  fill="#505D68"
+                ></path>
+              </svg>
+              <p class="flex-grow-0 flex-shrink-0 text-2xl text-left text-[#505d68]">
+                Date of birth
+              </p>
+            </div>
+            <p class="flex-grow-0 flex-shrink-0 text-2xl font-bold text-left text-[#505d68]">
+              04-01-2019
+            </p>
+          </div>
+        </div>
+        <div class="flex justify-center items-start flex-grow-0 flex-shrink-0 gap-[140px]">
+          <div class="flex justify-start items-end flex-grow-0 flex-shrink-0 gap-[118px]">
+            <div
+              class="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[58px]"
+            >
+              <div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+                <svg
+                  width="33"
+                  height="32"
+                  viewBox="0 0 33 32"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="flex-grow-0 flex-shrink-0 w-8 h-8 relative"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M10.5 4C10.5 5.117 9.617 6 8.5 6H7.5C5.3 6 3.5 7.8 3.5 10C3.5 12.2 5.3 14 7.5 14H8.656C8.5525 14.4933 8.50022 14.996 8.5 15.5V28H10.5V15.5C10.5 12.469 12.969 10 16 10C16.902 10 17.75 10.207 18.5 10.594V8.438C17.6978 8.15019 16.8522 8.00205 16 8C13.133 8 10.637 9.629 9.375 12H7.5C6.383 12 5.5 11.117 5.5 10C5.5 8.883 6.383 8 7.5 8H8.5C10.7 8 12.5 6.2 12.5 4H10.5ZM19.5 6.094V12.5C19.5 15.05 21.816 17 24.5 17C27.184 17 29.5 15.05 29.5 12.5V6.094L27.937 7.187L26.281 8.344C25.711 8.141 25.148 7.906 24.5 7.906C23.852 7.906 23.29 8.141 22.719 8.344L21.062 7.188L19.5 6.094ZM24.5 9.906C25.078 9.906 25.61 10.046 26.063 10.281L26.593 10.562L27.093 10.219L27.5 9.938V12.5C27.5 13.816 26.234 15 24.5 15C22.766 15 21.5 13.816 21.5 12.5V9.937L21.906 10.219L22.406 10.563L22.938 10.281C23.4211 10.0328 23.9568 9.90417 24.5 9.906ZM17.5 15C14.742 15 12.5 17.242 12.5 20V28H14.5V20C14.5 18.348 15.848 17 17.5 17C19.152 17 20.5 18.348 20.5 20V28H22.5V20C22.5 19.035 22.227 18.14 21.75 17.375C20.8049 16.9284 19.9958 16.238 19.406 15.375C18.8013 15.1265 18.1537 14.9991 17.5 15ZM26.5 17.688C25.8538 17.8962 25.1789 18.0015 24.5 18V28H26.5V17.688Z"
+                    fill="#505D68"
+                  ></path>
+                </svg>
+                <p class="flex-grow-0 flex-shrink-0 text-2xl text-left text-[#505d68]">Fur color</p>
+              </div>
+              <p class="flex-grow-0 flex-shrink-0 text-2xl font-bold text-left text-[#505d68]">
+                Black
+              </p>
+            </div>
+            <div
+              class="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[60px]"
+            >
+              <div class="flex justify-start items-center flex-grow-0 flex-shrink-0 relative gap-2">
+                <svg
+                  width="25"
+                  height="25"
+                  viewBox="0 0 25 25"
+                  fill="none"
+                  xmlns="http://www.w3.org/2000/svg"
+                  class="flex-grow-0 flex-shrink-0 w-6 h-6 relative"
+                  preserveAspectRatio="none"
+                >
+                  <path
+                    d="M3.5 13.5C7.1 5.5 17.9 5.5 21.5 13.5"
+                    stroke="#505D68"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                  <path
+                    d="M12.5 17.5C12.106 17.5 11.7159 17.4224 11.3519 17.2716C10.988 17.1209 10.6573 16.8999 10.3787 16.6213C10.1001 16.3427 9.87913 16.012 9.72836 15.6481C9.5776 15.2841 9.5 14.894 9.5 14.5C9.5 14.106 9.5776 13.7159 9.72836 13.3519C9.87913 12.988 10.1001 12.6573 10.3787 12.3787C10.6573 12.1001 10.988 11.8791 11.3519 11.7284C11.7159 11.5776 12.106 11.5 12.5 11.5C13.2956 11.5 14.0587 11.8161 14.6213 12.3787C15.1839 12.9413 15.5 13.7044 15.5 14.5C15.5 15.2956 15.1839 16.0587 14.6213 16.6213C14.0587 17.1839 13.2956 17.5 12.5 17.5Z"
+                    stroke="#505D68"
+                    stroke-width="1.5"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  ></path>
+                </svg>
+                <p class="flex-grow-0 flex-shrink-0 text-2xl text-left text-[#505d68]">
+                  Eyes color
+                </p>
+              </div>
+              <p class="flex-grow-0 flex-shrink-0 text-2xl font-bold text-left text-[#505d68]">
+                Blue
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex flex-col justify-start items-start flex-grow-0 flex-shrink-0 gap-[22px]">
+        <div
+          class="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[15px]"
+        >
+          <p class="flex-grow-0 flex-shrink-0 text-2xl text-left text-[#505d68]">Mother</p>
+          <svg
+            width="112"
+            height="111"
+            viewBox="0 0 112 111"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="flex-grow-0 flex-shrink-0 w-[111px] h-[111px] relative"
+            preserveAspectRatio="none"
+          >
+            <rect x="0.5" width="111" height="111" fill="white"></rect>
+            <rect x="1" y="0.5" width="110" height="110" stroke="#C2D1D9"></rect>
+            <rect x="42.5" y="44" width="28" height="23.0588" rx="4" fill="white"></rect>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M68.8529 44H44.1471C43.2374 44 42.5 44.7374 42.5 45.6471V65.4118C42.5 66.3214 43.2374 67.0588 44.1471 67.0588H68.8529C69.7626 67.0588 70.5 66.3214 70.5 65.4118V45.6471C70.5 44.7374 69.7626 44 68.8529 44ZM44.1471 65.4118V45.6471H68.8529V65.4118H44.1471Z"
+              fill="#C2D1D9"
+            ></path>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M47.0294 50.7943C47.0294 52.4999 48.4121 53.8825 50.1177 53.8825C51.8232 53.8825 53.2059 52.4999 53.2059 50.7943C53.2059 49.0887 51.8232 47.7061 50.1177 47.7061C48.4121 47.7061 47.0294 49.0887 47.0294 50.7943ZM51.5588 50.7943C51.5588 51.5902 50.9136 52.2355 50.1177 52.2355C49.3217 52.2355 48.6765 51.5902 48.6765 50.7943C48.6765 49.9983 49.3217 49.3531 50.1177 49.3531C50.9136 49.3531 51.5588 49.9983 51.5588 50.7943Z"
+              fill="#C2D1D9"
+            ></path>
+            <path
+              d="M48.4327 63.5262C48.1098 63.8464 47.5883 63.8442 47.2681 63.5212C46.9479 63.1982 46.9502 62.6768 47.2731 62.3566L54.0464 55.6416L57.864 58.9622C58.2072 59.2606 58.2434 59.7808 57.9449 60.124C57.6464 60.4672 57.1262 60.5034 56.7831 60.2049L54.1197 57.8883L48.4327 63.5262Z"
+              fill="#C2D1D9"
+            ></path>
+            <path
+              d="M54.6118 63.5238C54.2902 63.8455 53.7687 63.8455 53.4471 63.5239C53.1255 63.2023 53.1255 62.6809 53.4471 62.3592L64.2858 51.5195L70.2196 56.726C70.5615 57.026 70.5955 57.5463 70.2955 57.8882C69.9955 58.2301 69.4752 58.2641 69.1333 57.9641L64.3594 53.7753L54.6118 63.5238Z"
+              fill="#C2D1D9"
+            ></path>
+          </svg>
+        </div>
+        <div
+          class="flex flex-col justify-start items-center flex-grow-0 flex-shrink-0 relative gap-[15px]"
+        >
+          <p class="flex-grow-0 flex-shrink-0 text-2xl text-left text-[#505d68]">Father</p>
+          <svg
+            width="107"
+            height="106"
+            viewBox="0 0 107 106"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            class="flex-grow-0 flex-shrink-0 w-[106px] h-[106px] relative"
+            preserveAspectRatio="none"
+          >
+            <rect x="0.5" width="106" height="106" fill="white"></rect>
+            <rect x="1" y="0.5" width="105" height="105" stroke="#C2D1D9"></rect>
+            <rect x="39.5" y="41" width="28" height="23.0588" rx="4" fill="white"></rect>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M65.8529 41H41.1471C40.2374 41 39.5 41.7374 39.5 42.6471V62.4118C39.5 63.3214 40.2374 64.0588 41.1471 64.0588H65.8529C66.7626 64.0588 67.5 63.3214 67.5 62.4118V42.6471C67.5 41.7374 66.7626 41 65.8529 41ZM41.1471 62.4118V42.6471H65.8529V62.4118H41.1471Z"
+              fill="#C2D1D9"
+            ></path>
+            <path
+              fill-rule="evenodd"
+              clip-rule="evenodd"
+              d="M44.0294 47.7943C44.0294 49.4999 45.4121 50.8825 47.1177 50.8825C48.8232 50.8825 50.2059 49.4999 50.2059 47.7943C50.2059 46.0887 48.8232 44.7061 47.1177 44.7061C45.4121 44.7061 44.0294 46.0887 44.0294 47.7943ZM48.5588 47.7943C48.5588 48.5902 47.9136 49.2355 47.1177 49.2355C46.3217 49.2355 45.6765 48.5902 45.6765 47.7943C45.6765 46.9983 46.3217 46.3531 47.1177 46.3531C47.9136 46.3531 48.5588 46.9983 48.5588 47.7943Z"
+              fill="#C2D1D9"
+            ></path>
+            <path
+              d="M45.4327 60.5262C45.1098 60.8464 44.5883 60.8442 44.2681 60.5212C43.9479 60.1982 43.9502 59.6768 44.2731 59.3566L51.0464 52.6416L54.864 55.9622C55.2072 56.2606 55.2434 56.7808 54.9449 57.124C54.6464 57.4672 54.1262 57.5034 53.7831 57.2049L51.1197 54.8883L45.4327 60.5262Z"
+              fill="#C2D1D9"
+            ></path>
+            <path
+              d="M51.6118 60.5238C51.2902 60.8455 50.7687 60.8455 50.4471 60.5239C50.1255 60.2023 50.1255 59.6809 50.4471 59.3592L61.2858 48.5195L67.2196 53.726C67.5615 54.026 67.5955 54.5463 67.2955 54.8882C66.9955 55.2301 66.4752 55.2641 66.1333 54.9641L61.3594 50.7753L51.6118 60.5238Z"
+              fill="#C2D1D9"
+            ></path>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+

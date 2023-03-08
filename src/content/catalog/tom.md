@@ -4,6 +4,7 @@ excerpt: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis 
 birthday: "2022-11-09T16:39:36.050Z"
 image: "https://images.unsplash.com/photo-1612779068627-1451ffa38c81?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=900&q=80"
 personality: "friendly"
+eyecolor: "Yellow"
 author: "joshua-wood"
 tags: [webdev, tailwindcss, frontend]
 ---

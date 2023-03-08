@@ -4,6 +4,7 @@ excerpt: "We always knew but now we know. The tech elite mean to leave us all be
 birthday: "2022-12-27T11:39:36.050Z"
 image: "https://images.unsplash.com/photo-1591696038577-944232f59007?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&h=700"
 personality: "affectionate"
+eyecolor: "Yellow"
 author: "erika-oliver"
 tags: [tag1, tag2, tag3]
 ---

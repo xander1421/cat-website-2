@@ -5,6 +5,7 @@ birthday: "2022-11-07T15:39:36.050Z"
 image: "https://images.unsplash.com/photo-1612779042675-c20f1714f44c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8"
 personality: "affectionate"
 author: "erika-oliver"
+eyecolor: "Grey"
 tags: [astro, tailwindcss, frontend]
 ---
 

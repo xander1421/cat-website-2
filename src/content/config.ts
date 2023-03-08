@@ -9,6 +9,7 @@ const CatInfo = defineCollection({
     draft: z.boolean().optional(),
     tags: z.array(z.string()),
     image: z.string().optional(),
+    eyecolor: z.string(),
     birthday: z.string().transform((str) => new Date(str)),
   }),
 });

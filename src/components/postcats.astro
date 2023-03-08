@@ -12,8 +12,10 @@ const { post, aspect, preloadImage } = Astro.props;
 const personality = personalities.find(
   (item) => item.slug === post.data.personality
 ) as Personality;
+
 ---
-<!-- add a button that allows us to change between gridview and listview -->
+
+
 <div class="cursor-pointer group">
   <div
     class={cx(

@@ -19,7 +19,7 @@ const resolvedOGImage = checkImageUrl(ogimage, Astro.site);
 
 const makeTitle = title
   ? title + " | " + "Unicum"
-  : "Unicum — Free Blog Website Template built with Astro & MDX";
+  : "Unicum — website that deal with all things maine coon";
 ---
 
 <!DOCTYPE html>
@@ -32,10 +32,10 @@ const makeTitle = title
     <SEO
       title={makeTitle}
       description={desc ||
-        "Unicum is a Blog Starter Template built with Astro & MDX."}
+        "Unicum is a website that deal with all things maine coon."}
       canonical={canonicalURL}
       twitter={{
-        creator: "@surjithctly",
+        creator: "@xander1421",
         site: "@web3templates",
         card: "summary_large_image",
       }}
@@ -43,7 +43,7 @@ const makeTitle = title
         basic: {
           url: canonicalURL,
           type: "website",
-          title: `Unicum - Blog Starter Template for Astro`,
+          title: `Unicum - website that deal with all things maine coon`,
           image: resolvedOGImage,
         },
         image: {

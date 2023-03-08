@@ -4,6 +4,7 @@ excerpt: "Some description"
 birthday: "2022-11-24T11:39:36.050Z"
 image: "https://images.unsplash.com/photo-1616493039661-8a63de6ead09?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=987&h=987"
 personality: "energetic"
+eyecolor: "Yellow"
 author: "joshua-wood"
 tags: [tag1, tag2, tag3]
 ---

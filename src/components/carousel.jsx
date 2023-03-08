@@ -1,73 +1,59 @@
 import { useState } from 'react';
 
 const images = [
-  'https://source.unsplash.com/random/800x400',
-  'https://source.unsplash.com/random/800x401',
-  'https://source.unsplash.com/random/800x402',
-  'https://source.unsplash.com/random/800x403',
-  'https://source.unsplash.com/random/800x404',
+  'https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg',
+  'https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&w=1000&q=80',
+  'https://img.freepik.com/free-photo/red-white-cat-i-white-studio_155003-13189.jpg?w=360',
+  'https://m.media-amazon.com/images/I/71+mDoHG4mL.png',
+  'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022.jpg?crop=0.670xw:1.00xh;0.167xw,0&resize=640:*',
 ];
 
-const Carousel = () => {
-  const [activeIndex, setActiveIndex] = useState(0);
+function Carousel() {
+  const [currentIndex, setCurrentIndex] = useState(0);
 
-  const handlePrevClick = () => {
-    setActiveIndex((activeIndex - 1 + images.length) % images.length);
+  const handlePreviousClick = () => {
+    setCurrentIndex((currentIndex - 1 + images.length) % images.length);
   };
 
   const handleNextClick = () => {
-    setActiveIndex((activeIndex + 1) % images.length);
+    setCurrentIndex((currentIndex + 1) % images.length);
   };
 
-  const containerStyles = "flex flex-row items-center justify-center";
-
-  const buttonStyles = "h-100 w-100 rounded-full border border-gray-500 flex items-center justify-center cursor-pointer";
-
-  const imageContainerStyles = "h-80 flex-shrink-0 transition-transform duration-500";
-
-  const activeImageContainerStyles = "transform translate-x-0";
-
-  const inactiveImageContainerStyles = " transform translate-x-full";
-
-  const imageStyles = "w-full h-full object-cover";
+  const previousIndex = (currentIndex - 1 + images.length) % images.length;
+  const nextIndex = (currentIndex + 1) % images.length;
 
   return (
-    <div className={containerStyles}>
-      <div className={`${buttonStyles} mr-4`} onClick={handlePrevClick}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 stroke-current text-gray-500"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-        </svg>
-      </div>
-      <div className="w-96 overflow-hidden">
-        {images.map((image, index) => (
-          <div
-            key={index}
-            className={`${imageContainerStyles} ${index === activeIndex ? activeImageContainerStyles : inactiveImageContainerStyles}`}
-            style={{ width: `${100 / images.length}%`, transform: `translateX(-${activeIndex * (100 / images.length)}%)` }}
-          >
-            <img className={imageStyles} src={image} alt={`Image ${index}`} />
-          </div>
-        ))}
-      </div>
-      <div className={buttonStyles} onClick={handleNextClick}>
-        <svg
-          xmlns="http://www.w3.org/2000/svg"
-          className="h-6 w-6 stroke-current text-gray-500"
-          fill="none"
-          viewBox="0 0 24 24"
-          stroke="currentColor"
-        >
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-        </svg>
-      </div>
+
+    <div className="relative flex flex-row items-center justify-center ">
+      <button
+        onClick={handlePreviousClick}
+        className="px-4 py-2 bg-gray-300 rounded-l-md hover:bg-gray-400"
+      >
+        Previous
+      </button>
+      <img
+        src={images[previousIndex]}
+        alt="carousel"
+        className="mx-4 w-64 h-64 object-contain"
+      />
+      <img
+        src={images[currentIndex]}
+        alt="carousel"
+        className="mx-4 w-72 h-72 z-10 object-contain hover:scale-105"
+      />
+      <img
+        src={images[nextIndex]}
+        alt="carousel"
+        className="md:w-1/2 mx-4 w-64 h-64 object-contain"
+      />
+      <button
+        onClick={handleNextClick}
+        className="px-4 py-2 bg-gray-300 rounded-r-md hover:bg-gray-400"
+      >
+        Next
+      </button>
     </div>
   );
-};
+}
 
 export default Carousel;
