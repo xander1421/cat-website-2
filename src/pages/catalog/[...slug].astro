@@ -1,0 +1,92 @@
+---
+import { Image, Picture } from "@astrojs/image/components";
+import Container from "@components/container.astro";
+import Label from "@components/ui/label.astro";
+import { personalities } from "@data/personality";
+import Layout from "@layouts/Layout.astro";
+import { getFormattedDate } from "@utils/all";
+import { CollectionEntry, getCollection } from "astro:content";
+
+import type { Personality } from "@data/personality";
+
+type Props = CollectionEntry<"catalog">;
+
+export async function getStaticPaths() {
+  const catalog = await getCollection("catalog");
+
+  return catalog.map((post) => ({
+    params: { slug: post.slug },
+    props: { post },
+  }));
+}
+
+const { post } = Astro.props;
+
+const { Content } = await post.render();
+
+const personality = personalities.find(
+  (item) => item.slug === post.data.personality
+) as Personality;
+---
+
+<Layout
+  title={post.data.title}
+  desc={post.data.excerpt}
+  ogimage={post.data.image}>
+  <Container>
+    <div class="max-w-screen-md mx-auto">
+      <div class="text-center">
+        <Label theme={personality.color}>{personality.title}</Label>
+      </div>
+
+      <h1
+        class="mt-2 mb-3 text-3xl font-semibold tracking-tight text-center lg:leading-snug text-brand-primary lg:text-4xl dark:text-white">
+        {post.data.title}
+      </h1>
+    </div>
+  </Container>
+
+  <div
+    class="relative z-0 max-w-screen-lg mx-auto overflow-hidden lg:rounded-lg aspect-video">
+    {
+      post.data.image && (
+        <Picture
+          src={post.data.image}
+          widths={[200, 400, 800]}
+          sizes="(max-width: 640px) 90vw, 480px"
+          aspectRatio="16:9"
+          width={1024}
+          height={576}
+          alt="Thumbnail"
+          loading="eager"
+          class="w-full"
+        />
+      )
+    }
+  </div>
+
+  <Container>
+    <article class="max-w-screen-md mx-auto">
+      <div
+        class="mx-auto my-3 prose prose-base dark:prose-invert prose-a:text-blue-600">
+        <Content  class="bg-slate-100"/>
+
+        <div class="flex flex-wrap items-center w-full gap-3 md:w-auto">
+          {
+            post.data.tags.map((tag) => (
+              <span class="text-sm text-gray-500">#{tag}</span>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="flex justify-center mt-7 mb-7">
+        <a
+          href="/catalog"
+          class="px-5 py-3 text-sm text-blue-600 transition rounded-md dark:text-blue-500 bg-blue-50 hover:bg-blue-100">
+          ← Back to all cats
+        </a>
+      </div>
+    </article>
+  </Container>
+</Layout>

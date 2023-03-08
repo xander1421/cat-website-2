@@ -1,0 +1,26 @@
+---
+import Container from "@components/container.astro";
+import Pagetitle from "@components/pagetitle.astro";
+import PostBlog from "@components/postblog.astro";
+import Layout from "@layouts/Layout.astro";
+import { latestPosts } from "@utils/content";
+// Use Astro.glob() to fetch all posts, and then sort them by date.
+// const posts = (await Astro.glob("./blog/*.{md,mdx}")).sort(
+//   (a, b) =>
+//     new Date(b.frontmatter.birthday).valueOf() -
+//     new Date(a.frontmatter.birthday).valueOf()
+// );
+---
+
+<Layout title="Blog">
+  <Container>
+    <Pagetitle>
+      <Fragment slot="title">Blog</Fragment>
+    </Pagetitle>
+    <main>
+      <div class="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3">
+        {latestPosts.map((post) => <PostBlog post={post} aspect="square" />)}
+      </div>
+    </main>
+  </Container>
+</Layout>

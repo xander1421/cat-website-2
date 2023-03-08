@@ -1,0 +1,86 @@
+---
+import Container from "@components/container.astro";
+import PostCats from "@components/postcats.astro";
+import PostCatsList from "@components/postcatsList.astro";
+import Hero from "@components/hero.astro";
+import Carousel  from "@components/carousel.jsx";
+import Layout from "@layouts/Layout.astro";
+import { allCats } from "@utils/content";
+---
+
+<Layout title="Home">
+  <Hero />
+  <!-- <Carousel client:load/> -->
+  <Container>
+    <div class="flex justify-center space-x-4">
+      <button id="grid-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        Grid View
+      </button>
+      <button id="list-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+        List View
+      </button>
+    </div>
+    <h1 id="" class="text-4xl font-bold text-left mb-6 mt-4">Latest Cats</h1>
+
+    <div id="grid-view">
+      <div class="grid gap-10 lg:gap-10 md:grid-cols-2 ">
+        {
+          allCats
+            .slice(0, 2)
+            .map((post) => (
+              <PostCats post={post} aspect="landscape" preloadImage={true} />
+            ))
+        }
+      </div>
+      <div id="grid-2" class="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3">
+        {
+          allCats
+            .slice(2)
+            .map((post) => <PostCats post={post} aspect="square" />)
+        }
+      </div>
+    </div>
+
+    <div id="list-view" class="hidden list gap-10 mt-10  md:list-cols-2 xl:list-cols-3">
+      <div class=""></div>
+        {
+          allCats
+            .slice(0, 7)
+            .map((post) => (
+              <PostCatsList post={post} aspect="aspect-video" preloadImage={true} />
+            ))
+        }
+      </div>
+    </div>
+
+  </Container>
+
+  <script is:inline>
+    const gridButton = document.getElementById("grid-button");
+    const listButton = document.getElementById("list-button");
+    const gridView = document.getElementById("grid-view");
+    const listView = document.getElementById("list-view");
+
+    // Retrieve saved view from local storage on page load
+    const savedView = localStorage.getItem("view") || "grid";
+    if (savedView === "list") {
+      gridView.classList.add("hidden");
+      listView.classList.remove("hidden");
+    }
+
+    gridButton.addEventListener("click", () => {
+      gridView.classList.remove("hidden");
+      listView.classList.add("hidden");
+      // Save selected view to local storage
+      localStorage.setItem("view", "grid");
+    });
+
+    listButton.addEventListener("click", () => {
+      gridView.classList.add("hidden");
+      listView.classList.remove("hidden");
+      // Save selected view to local storage
+      localStorage.setItem("view", "list");
+    });
+  </script>
+
+</Layout>
