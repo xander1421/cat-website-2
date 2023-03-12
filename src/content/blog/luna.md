@@ -2,7 +2,7 @@
 title: "BlogPost3"
 excerpt: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
 postdate: "2022-12-28T11:39:36.050Z"
-image: "https://i2-prod.liverpoolecho.co.uk/incoming/article7160845.ece/ALTERNATES/s615/zzztinietempah1.jpg"
+image: "src/assets/authors/luna.webp"
 personality: "friendly"
 author: "mario-sanchez"
 tags: [webdev, tailwindcss, frontend]

@@ -12,28 +12,53 @@ const { post, aspect, preloadImage } = Astro.props;
 const personality = personalities.find(
   (item) => item.slug === post.data.personality
 ) as Personality;
-
 ---
 
-
-<div class="cursor-pointer group">
+<div class="cursor-pointer group transition-all hover:scale-105">
   <div
     class={cx(
-      "relative overflow-hidden transition-all bg-gray-100 rounded-md dark:bg-gray-800   hover:scale-105",
+      "relative overflow-hidden transition-all rounded-md",
       aspect === "landscape" ? "aspect-video" : "aspect-square"
     )}>
     <a href={"/catalog/" + post.slug}>
       {
         post.data.image ? (
-          <Picture
-            src={post.data.image}
-            widths={[200, 400, 800]}
-            sizes="(max-width: 640px) 90vw, 480px"
-            aspectRatio={aspect === "landscape" ? "16:9" : "1:1"}
-            alt="Thumbnail"
-            loading={preloadImage ? "eager" : "lazy"}
-            class="w-full h-full rounded-md"
-          />
+          <>
+            <Picture
+              src={post.data.image}
+              widths={[200, 400, 800]}
+              sizes="(max-width: 640px) 90vw, 480px"
+              aspectRatio={aspect === "landscape" ? "16:9" : "1:1"}
+              alt="Thumbnail"
+              loading={preloadImage ? "eager" : "lazy"}
+              class="w-full h-full rounded-md"
+            />
+            <div class="absolute bottom-0 left-0 right-0 px-4 py-2 bg-[#080808] bg-opacity-50">
+              <a href="#">
+                <Label theme={personality.color}>{personality.title}</Label>
+              </a>
+              <h2 class="mt-2 text-lg font-semibold tracking-normal text-brand-primary dark:text-white">
+                <a href={"/catalog/" + post.slug}>
+                  <span class="text-white bg-gradient-to-r from-[#6391AF] to-[#6391AF] dark:from-purple-800 dark:to-purple-900 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]">
+                    {post.data.title}
+                  </span>
+                </a>
+              </h2>
+              <div class="hidden">
+                {post.data.excerpt && (
+                  <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
+                    <a href={"/catalog/" + post.slug}>{post.data.excerpt}</a>
+                  </p>
+                )}
+              </div>
+              <time class="text-sm text-white" datetime={post.data.birthday}>
+                {getFormattedDate(post.data.birthday)}
+              </time>
+              <div>
+                <h2 class="flex justify-end text-white">Available</h2>
+              </div>
+            </div>
+          </>
         ) : (
           <span class="absolute w-16 h-16 text-gray-200 -translate-x-1/2 -translate-y-1/2 top-1/2 left-1/2">
             <Icon
@@ -45,30 +70,4 @@ const personality = personalities.find(
       }
     </a>
   </div>
-
-  <a href="#">
-    <Label theme={personality.color}>{personality.title}</Label>
-  </a>
-  <h2
-    class="mt-2 text-lg font-semibold tracking-normal text-brand-primary dark:text-white">
-    <a href={"/catalog/" + post.slug}>
-      <span
-        class="bg-gradient-to-r from-green-200 to-green-100 dark:from-purple-800 dark:to-purple-900 bg-[length:0px_10px] bg-left-bottom bg-no-repeat transition-[background-size] duration-500 hover:bg-[length:100%_3px] group-hover:bg-[length:100%_10px]">
-        {post.data.title}
-      </span>
-    </a>
-  </h2>
-
-  <div class="hidden">
-    {
-      post.data.excerpt && (
-        <p class="mt-2 text-sm text-gray-500 dark:text-gray-400 line-clamp-3">
-          <a href={"/catalog/" + post.slug}>{post.data.excerpt}</a>
-        </p>
-      )
-    }
-  </div>
-    <time class="text-sm" datetime={post.data.birthday}>
-      {getFormattedDate(post.data.birthday)}
-    </time>
 </div>

@@ -2,7 +2,7 @@
 title: "BlogPost2"
 excerpt: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
 postdate: "2022-12-30T11:39:36.050Z"
-image: "https://static.wixstatic.com/media/41b47a_e44a773db81948969a67eaf2262c0dbb~mv2.jpg/v1/fill/w_560,h_400,al_c,q_80,usm_0.66_1.00_0.01,enc_auto/41b47a_e44a773db81948969a67eaf2262c0dbb~mv2.jpg"
+image: "src/assets/authors/joe.webp"
 personality: "calm"
 author: "mario-sanchez"
 tags: [calm]

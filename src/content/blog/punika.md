@@ -2,7 +2,7 @@
 title: "BlogPost5"
 excerpt: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
 postdate: "2022-11-07T15:39:36.050Z"
-image: "https://s36537.pcdn.co/wp-content/uploads/2015/06/85abaf8c327efc8c9941143986f959ae.jpg.optimal.jpg"
+image: "src/assets/authors/punika.webp"
 personality: "affectionate"
 author: "erika-oliver"
 tags: [astro, tailwindcss, frontend]

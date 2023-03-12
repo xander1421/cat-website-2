@@ -2,7 +2,7 @@
 title: "BlogPost4"
 excerpt: "We always knew but now we know. The tech elite mean to leave us all behind."
 postdate: "2022-12-27T11:39:36.050Z"
-image: "https://static01.nyt.com/images/2019/05/19/world/17grumpycat-1/17grumpycat-1-videoSixteenByNine3000.jpg"
+image: "src/assets/authors/porsche.webp"
 personality: "affectionate"
 author: "erika-oliver"
 tags: [tag1, tag2, tag3]

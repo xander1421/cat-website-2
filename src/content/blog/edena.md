@@ -2,7 +2,7 @@
 title: "BlogPost1"
 excerpt: "In 2007, the now-defunct San Antonio Independent Christian Film Festival awarded Best of Festival to a documentary called The Monstrous Regiment of Women "
 postdate: "2022-11-18T11:39:36.050Z"
-image: "https://i.ytimg.com/vi/1ctBWJTRuIM/maxresdefault.jpg"
+image: "src/assets/authors/edena.webp"
 personality: "playful"
 author: "joshua-wood"
 tags: [tag1, tag2, tag3]

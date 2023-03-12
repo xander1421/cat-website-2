@@ -2,7 +2,7 @@
 title: "BlogPost6"
 excerpt: "Ornare cum cursus laoreet sagittis nunc fusce posuere per euismod dis vehicula a, semper fames lacus maecenas dictumst pulvinar neque enim non potenti. Torquent hac sociosqu eleifend potenti."
 postdate: "2022-11-09T16:39:36.050Z"
-image: "https://cloudfront-us-east-1.images.arcpublishing.com/coindesk/MT3FG3YVCNDCRDLQTHYNABGDGM.png"
+image: "src/assets/authors/tom.webp"
 personality: "friendly"
 author: "joshua-wood"
 tags: [webdev, tailwindcss, frontend]
