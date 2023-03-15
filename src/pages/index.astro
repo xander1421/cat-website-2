@@ -3,27 +3,54 @@ import Container from "@components/container.astro";
 import PostCats from "@components/postcats.astro";
 import PostCatsList from "@components/postcatsList.astro";
 import Hero from "@components/hero.astro";
-import Carousel  from "@components/carousel.jsx";
+import CarouselWithLightbox from "@components/carousel.jsx";
+
 import Layout from "@layouts/Layout.astro";
 import { allCats } from "@utils/content";
+
+// const images = [
+//     "https://images.pexels.com/photos/45201/kitty-cat-kitten-pet-45201.jpeg",
+//     "https://images.unsplash.com/photo-1615789591457-74a63395c990?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8ZG9tZXN0aWMlMjBjYXR8ZW58MHx8MHx8&w=1000&q=80",
+//     "https://img.freepik.com/free-photo/red-white-cat-i-white-studio_155003-13189.jpg?w=360",
+//     "https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/cute-cat-photos-1593441022.jpg?crop=0.670xw:1.00xh;0.167xw,0&resize=640:*",
+//     'https://images.unsplash.com/photo-1561948955-570b270e7c36?fm=webp',
+//     'https://images.unsplash.com/photo-1574158622682-e40e69881006?fm=webp',
+//     'https://images.unsplash.com/photo-1555685812-4b943f1cb0eb?fm=webp',
+//     'https://images.unsplash.com/photo-1501820488136-72669149e0d4?fm=webp',
+//     'https://images.unsplash.com/photo-1518791841217-8f162f1e1131?fm=webp',
+//     'https://images.unsplash.com/photo-1583583704670-1642f3ee22d3?fm=webp',
+//     'https://images.unsplash.com/photo-1606225457115-9b0de873c5db?fm=webp',
+//     'https://images.unsplash.com/photo-1644784960532-7a3d7195e26a?fm=webp',
+//     'https://images.unsplash.com/photo-1586942389083-584785d8e8b8?fm=webp',
+//   ]
+
+
+
+
 ---
 
 <Layout title="Home">
-  <Hero />
-  <!-- <Carousel client:load/> -->
   <Container>
-    <div class="flex justify-center space-x-4">
-      <button id="grid-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+    <CarouselWithLightbox
+    posts={allCats.slice(0, 5)}
+    client:load
+  />
+      <div class="pt-4 flex justify-center space-x-4">
+      <button
+        id="grid-button"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         Grid View
       </button>
-      <button id="list-button" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+      <button
+        id="list-button"
+        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
         List View
       </button>
     </div>
     <h1 id="" class="text-4xl font-bold text-left mb-6 mt-4">Latest Cats</h1>
 
     <div id="grid-view">
-      <div class="grid gap-10 lg:gap-10 md:grid-cols-2 ">
+      <div class="grid gap-10 lg:gap-10 md:grid-cols-2">
         {
           allCats
             .slice(0, 2)
@@ -32,7 +59,9 @@ import { allCats } from "@utils/content";
             ))
         }
       </div>
-      <div id="grid-2" class="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3">
+      <div
+        id="grid-2"
+        class="grid gap-10 mt-10 lg:gap-10 md:grid-cols-2 xl:grid-cols-3">
         {
           allCats
             .slice(2)
@@ -41,46 +70,49 @@ import { allCats } from "@utils/content";
       </div>
     </div>
 
-    <div id="list-view" class="hidden list gap-10 mt-10  md:list-cols-2 xl:list-cols-3">
+    <div
+      id="list-view"
+      class="">
       <div class=""></div>
-        {
-          allCats
-            .slice(0, 7)
-            .map((post) => (
-              <PostCatsList post={post} aspect="aspect-video" preloadImage={true} />
-            ))
-        }
-      </div>
+      {
+        allCats
+          .slice(0, 7)
+          .map((post) => (
+            <PostCatsList
+              post={post}
+              aspect="aspect-video"
+              preloadImage={true}
+            />
+          ))
+      }
     </div>
-
   </Container>
-
-  <script is:inline>
-    const gridButton = document.getElementById("grid-button");
-    const listButton = document.getElementById("list-button");
-    const gridView = document.getElementById("grid-view");
-    const listView = document.getElementById("list-view");
-
-    // Retrieve saved view from local storage on page load
-    const savedView = localStorage.getItem("view") || "grid";
-    if (savedView === "list") {
-      gridView.classList.add("hidden");
-      listView.classList.remove("hidden");
-    }
-
-    gridButton.addEventListener("click", () => {
-      gridView.classList.remove("hidden");
-      listView.classList.add("hidden");
-      // Save selected view to local storage
-      localStorage.setItem("view", "grid");
-    });
-
-    listButton.addEventListener("click", () => {
-      gridView.classList.add("hidden");
-      listView.classList.remove("hidden");
-      // Save selected view to local storage
-      localStorage.setItem("view", "list");
-    });
-  </script>
-
 </Layout>
+
+<script is:inline>
+  const gridButton = document.getElementById("grid-button");
+  const listButton = document.getElementById("list-button");
+  const gridView = document.getElementById("grid-view");
+  const listView = document.getElementById("list-view");
+
+  // Retrieve saved view from local storage on page load
+  const savedView = localStorage.getItem("view") || "grid";
+  if (savedView === "list") {
+    gridView.classList.add("hidden");
+    listView.classList.remove("hidden");
+  }
+
+  gridButton.addEventListener("click", () => {
+    gridView.classList.remove("hidden");
+    listView.classList.add("hidden");
+    // Save selected view to local storage
+    localStorage.setItem("view", "grid");
+  });
+
+  listButton.addEventListener("click", () => {
+    gridView.classList.add("hidden");
+    listView.classList.remove("hidden");
+    // Save selected view to local storage
+    localStorage.setItem("view", "list");
+  });
+</script>

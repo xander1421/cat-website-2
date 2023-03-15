@@ -10,7 +10,9 @@ module.exports = {
         gray: colors.neutral,
       },
       fontFamily: {
-        sans: ["InterVariable", "Inter", ...defaultTheme.fontFamily.sans],
+        // sans: ["InterVariable", "Inter", ...defaultTheme.fontFamily.sans],
+        sans: ['"Zilla Slab"', ...defaultTheme.fontFamily.sans],
+
       },
       aspectRatio: {
         "4/3": "4 / 3",
@@ -25,3 +27,5 @@ module.exports = {
     require("@tailwindcss/typography"),
   ],
 };
+
+
