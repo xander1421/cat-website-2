@@ -5,6 +5,7 @@ export interface Props {
   bio: string;
 }
 
+
 export type Author = Props;
 
 export const authors: Props[] = [
